@@ -1,0 +1,230 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  flex: 1;
+}
+
+@media (min-width: 1024px) {
+  .inner {
+    flex-direction: row;
+    gap: 0;
+    align-items: stretch;
+  }
+}
+
+.left {
+  flex: 1;
+  max-width: 42rem;
+  order: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 9rem 0 0 !important;
+}
+
+@media (min-width: 1024px) {
+  .left {
+    order: 1;
+    padding: 6rem 0 4rem;
+  }
+}
+
+.codeTag {
+  margin-bottom: 0.75rem;
+}
+
+.codeTagText {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  background: rgba(0, 212, 255, 0.08);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  display: inline-block;
+}
+
+.muted {
+  color: var(--color-text-muted);
+}
+
+.heading {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+}
+
+.headingMuted {
+  color: var(--color-text-muted);
+  font-size: 0.7em;
+}
+
+.typeRow {
+  margin-bottom: 1rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+  color: var(--color-text-muted);
+}
+
+.typeHighlight {
+  color: var(--color-primary);
+}
+
+.desc {
+  color: var(--color-text-muted);
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+  max-width: 32rem;
+}
+
+.descHighlight {
+  color: var(--color-text);
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.resumeLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.resumeLink:hover {
+  color: var(--color-text);
+}
+
+.socialRow {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.socialLabel {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.socialLinks {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.socialLink {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--color-border);
+  transition: all 0.2s ease;
+}
+.socialLink:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+}
+
+.right {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  order: 1;
+}
+
+@media (min-width: 1024px) {
+  .right {
+    order: 2;
+    width: 42%;
+    align-self: stretch;
+  }
+}
+
+.photoWrap {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .photoWrap {
+    height: 460px;
+  }
+
+}
+@media (max-width: 768px) {
+ .left{
+    padding: 1rem !important;
+  }
+}
+
+@media (max-width: 500px) {
+.left{
+    padding: 1rem !important;
+  }
+}
+@media (min-width: 1024px) {
+  .photoWrap {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 42%;
+    height: 90%;
+    max-height: 820px;
+  }
+}
+
+.photoRing {
+  display: none;
+}
+
+.photoGlow {
+  display: none;
+}
+
+.photo {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: auto;
+  max-width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: bottom center;
+  z-index: 1;
+}

@@ -1,0 +1,444 @@
+.timelineContainer {
+  position: relative;
+  max-width: 1000px;
+  margin: 4rem auto 0;
+  padding-block: 2rem;
+}
+
+/* 
+  Central Line
+  This is the track. .lineFill scales inside it.
+*/
+.centralLine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(-50%);
+  border-radius: 4px;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.lineFill {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, #6c63ff, #00d4ff, #ff6584);
+  box-shadow: 0 0 15px rgba(108, 99, 255, 0.5);
+}
+
+.list {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0; /* Gap handled by padding/margin in rows */
+}
+
+/* 
+  Row Layout 
+  Uses grid to center the node and place cards L/R
+*/
+.cardRow {
+  display: grid;
+  grid-template-columns: 1fr 60px 1fr;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+/* Nodes on the timeline */
+.timelineNode {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  z-index: 2;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.nodeInner {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 2;
+  border: 4px solid var(--color-bg);
+}
+
+.nodePulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border: 1px solid;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.5);
+    opacity: 0;
+  }
+}
+
+/* 
+  Alternating Layout
+*/
+.emptySpace {
+  display: block;
+}
+
+/* Default: Odd items -> Card on Left, Space on Right */
+.rowOdd .cardWrapper {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: right;
+  padding-right: 1rem;
+}
+.rowOdd .emptySpace {
+  grid-column: 3;
+  grid-row: 1;
+}
+.rowOdd .cardHeader {
+  flex-direction: row-reverse;
+}
+.rowOdd .headerInfo {
+  align-items: flex-end;
+}
+.rowOdd .positions {
+  align-items: flex-end;
+}
+.rowOdd .subPosition {
+  border-left: none;
+  border-right: 2px solid;
+  padding-left: 0;
+  padding-right: 1rem;
+  text-align: right;
+  position: relative;
+}
+.rowOdd .subDot {
+  position: absolute;
+  top: 6px;
+  right: -5px;
+  left: auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.rowOdd .tags {
+  justify-content: flex-end;
+}
+
+/* Even items -> Space on Left, Card on Right */
+.rowEven .emptySpace {
+  grid-column: 1;
+  grid-row: 1;
+}
+.rowEven .cardWrapper {
+  grid-column: 3;
+  grid-row: 1;
+  text-align: left;
+  padding-left: 1rem;
+}
+.rowEven .cardHeader {
+  flex-direction: row;
+}
+.rowEven .headerInfo {
+  align-items: flex-start;
+}
+.rowEven .positions {
+  align-items: flex-start;
+}
+.rowEven .subPosition {
+  position: relative;
+  padding-left: 1rem;
+  border-left: 2px solid;
+}
+.rowEven .subDot {
+  position: absolute;
+  top: 6px;
+  left: -5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.rowEven .tags {
+  justify-content: flex-start;
+}
+
+/* 
+  Card Styling 
+*/
+.card {
+  padding: 1.75rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  width: 100%;
+  position: relative;
+}
+
+.cardHeader {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.logoBox {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0.5rem;
+  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.role {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.duration {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  font-family: monospace;
+}
+
+.companyLoc {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text);
+  flex-wrap: wrap;
+}
+.location {
+  opacity: 0.6;
+}
+
+.description {
+  margin-bottom: 1.5rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+/* Positions timeline inside card */
+.positions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-block: 1rem;
+}
+
+.subRole {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.subDuration {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.skillTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.35rem;
+}
+
+.miniTag {
+  font-size: 0.75rem;
+  padding: 0.1rem 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  color: var(--color-text-muted);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  /* Shift the progress line to the left edge */
+  .timelineContainer {
+    padding-inline: 0;
+    margin-top: 2.5rem;
+  }
+
+  .centralLine {
+    left: 20px;
+    transform: none;
+  }
+
+  /* 2-column mobile grid: [44px node] [1fr card] */
+  .cardRow {
+    grid-template-columns: 44px 1fr;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+  }
+
+  /* Lock the node into column 1, row 1 — overrides desktop grid-column: 2 */
+  .timelineNode {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    width: 44px;
+    height: 44px;
+    padding-top: 0.25rem;
+    transform: none !important;
+    left: auto !important;
+    justify-content: center;
+  }
+
+  /* Lock all cards into column 2  */
+  .rowOdd .cardWrapper,
+  .rowEven .cardWrapper {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    text-align: left !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Hide the empty spacer column */
+  .rowOdd .emptySpace,
+  .rowEven .emptySpace {
+    display: none !important;
+  }
+
+  /* Reset all LTR to standard left-aligned layout */
+  .rowOdd .cardHeader,
+  .rowEven .cardHeader {
+    flex-direction: row !important;
+    align-items: flex-start;
+  }
+
+  .rowOdd .headerInfo,
+  .rowEven .headerInfo {
+    align-items: flex-start !important;
+  }
+
+  .rowOdd .positions,
+  .rowEven .positions {
+    align-items: flex-start !important;
+  }
+
+  .rowOdd .subPosition,
+  .rowEven .subPosition {
+    border-left: 2px solid !important;
+    border-right: none !important;
+    padding-left: 0.875rem !important;
+    padding-right: 0 !important;
+    text-align: left !important;
+  }
+
+  .rowOdd .subDot,
+  .rowEven .subDot {
+    left: -5px !important;
+    right: auto !important;
+  }
+
+  .rowOdd .tags,
+  .rowEven .tags {
+    justify-content: flex-start !important;
+  }
+
+  /* Tighter card on mobile */
+  .card {
+    padding: 1.25rem;
+    border-radius: 0.875rem;
+  }
+
+  .cardHeader {
+    gap: 0.875rem;
+    margin-bottom: 1rem;
+  }
+
+  .logoBox {
+    width: 3rem;
+    height: 3rem;
+    padding: 0.375rem;
+    border-radius: 0.625rem;
+    flex-shrink: 0;
+  }
+
+  .role {
+    font-size: 1rem;
+  }
+
+  .duration {
+    font-size: 0.75rem;
+  }
+
+  .companyLoc {
+    font-size: 0.8rem;
+  }
+
+  .description {
+    font-size: 0.875rem;
+  }
+
+  .nodeInner {
+    width: 12px;
+    height: 12px;
+  }
+
+  .nodePulse {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+.companyName {
+  font-weight: 600;
+  color: #fff;
+}
+
+.roleDuration {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}

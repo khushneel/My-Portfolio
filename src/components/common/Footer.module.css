@@ -1,0 +1,95 @@
+.footer {
+  position: relative;
+  border-top: 1px solid var(--color-border);
+  padding-block: 3rem;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    flex-direction: row;
+  }
+}
+
+.brand {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .brand {
+    text-align: left;
+  }
+}
+
+.brandName {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.brandSub {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-family: "JetBrains Mono", monospace;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+}
+
+.navBtn {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: none;
+  transition: color 0.2s ease;
+  padding: 0;
+}
+.navBtn:hover {
+  color: var(--color-primary);
+}
+
+.socials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.socialLink {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.socialLink:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.copyright {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  font-family: "JetBrains Mono", monospace;
+}

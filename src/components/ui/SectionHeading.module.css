@@ -1,0 +1,22 @@
+.wrapper {
+  margin-bottom: 4rem;
+}
+
+.wrapperCenter {
+  text-align: center;
+}
+
+.tagCenter {
+  justify-content: center;
+}
+
+.subtitle {
+  color: var(--color-text-muted);
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  max-width: 42rem;
+  line-height: 1.7;
+}
+
+.subtitleCenter {
+  margin-inline: auto;
+}

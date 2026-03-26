@@ -1,0 +1,60 @@
+export const experiences = [
+  {
+    id: 1,
+    role: "Web Developer",
+    company: "Manzeera Solutions",
+    location: "Bracknell, England, United Kingdom",
+    duration: "Nov 2024 - Present · 1 yr 5 mos",
+    type: "Full-time",
+    description: "Contributing to enterprise-level solutions.",
+    achievements: [],
+    tech: [],
+    color: "#6C63FF",
+    logo: "https://www.manzeerasolutions.co.uk/images/logo.png",
+  },
+  {
+    id: 2,
+    role: "Frontend Developer",
+    company: "Freelance",
+    location: "Remote",
+    duration: "May 2024 - Oct 2024 · 6 mos",
+    type: "Freelance",
+    description: "Building custom web applications for global clients.",
+    achievements: [],
+    tech: [],
+    color: "#FF6584",
+    logo: "https://ui-avatars.com/api/?name=Freelance&background=FF6584&color=fff&size=128",
+  },
+  {
+    id: 3,
+    company: "Seasia Infotech",
+    location: "Mohali · On-site",
+    duration: "Jan 2023 - May 2024 · 1 yr 5 mos",
+    type: "Full-time",
+    description: "Developed and maintained scalable Angular applications.",
+    positions: [
+      {
+        role: "Associate Software Developer",
+        duration: "May 2023 - May 2024 · 1 yr 1 mo",
+        type: "Full-time",
+        skills: ["Angular", "TypeScript"],
+      },
+      {
+        role: "Trainee-Software Developer",
+        duration: "Jan 2023 - Jun 2023 · 6 mos",
+        type: "Full-time",
+      },
+    ],
+    role: "Associate Software Developer",
+    achievements: [],
+    tech: ["Angular", "TypeScript"],
+    color: "#00D4FF",
+    logo: "https://www.seasiainfotech.com/logo.svg",
+  },
+];
+
+export const stats = [
+  { label: "Years Experience", value: 3, suffix: "+" },
+  { label: "Projects Completed", value: 20, suffix: "+" },
+  { label: "GitHub Repos", value: 40, suffix: "+" },
+];

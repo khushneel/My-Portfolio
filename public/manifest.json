@@ -1,0 +1,16 @@
+{
+  "name": "Khushneel Portfolio",
+  "short_name": "Khushneel",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6C63FF",
+  "description": "Full-Stack Web Developer Portfolio — MERN & MEAN Stack. Building scalable web apps.",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "48x48 72x72 96x96 128x128 256x256",
+      "type": "image/svg+xml"
+    }
+  ]
+}
