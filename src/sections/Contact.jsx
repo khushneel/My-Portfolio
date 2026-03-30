@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import { useParallax } from "@/hooks/useScrollReveal";
@@ -9,16 +9,13 @@ import {
   FiGithub,
   FiLinkedin,
   FiTwitter,
+  FiCheckCircle,
 } from "react-icons/fi";
-import Lottie from "lottie-react";
 import toast from "react-hot-toast";
 import SectionHeading from "@/components/ui/SectionHeading";
 import Button from "@/components/ui/Button";
 import { SITE_CONFIG } from "@/utils/constants";
 import styles from "./Contact.module.css";
-
-const SUCCESS_LOTTIE =
-  "https://assets3.lottiefiles.com/packages/lf20_n5gkue3j.json";
 
 const contactInfo = [
   {
@@ -50,7 +47,6 @@ export default function Contact() {
   });
   const [loading, setLoading] = useState(false);
   const [sent, setSent] = useState(false);
-  const lottieRef = useRef();
   const orbRef = useParallax(0.3);
 
   const handleChange = (e) =>
@@ -71,6 +67,18 @@ export default function Contact() {
       return;
     }
 
+    const formattedMessage =
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
+      `📬 NEW PORTFOLIO CONTACT\n` +
+      `━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
+      `👤 Name    : ${form.name}\n` +
+      `📧 Email   : ${form.email}\n` +
+      `📌 Subject : ${form.subject || "Portfolio Contact"}\n\n` +
+      `💬 Message :\n` +
+      `──────────────────────────────\n` +
+      `${form.message}\n` +
+      `──────────────────────────────`;
+
     setLoading(true);
     try {
       await emailjs.send(
@@ -79,8 +87,9 @@ export default function Contact() {
         {
           from_name: form.name,
           from_email: form.email,
+          reply_to: form.email,
           subject: form.subject || "Portfolio Contact",
-          message: form.message,
+          message: formattedMessage,
           to_email: "khushneel21@gmail.com",
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
@@ -88,7 +97,7 @@ export default function Contact() {
       setSent(true);
       toast.success("Message sent! I'll get back to you soon.");
     } catch (err) {
-      console.error("EmailJS error:", err);
+      console.error("EmailJS error:", err?.status, err?.text);
       toast.error("Failed to send. Please try emailing me directly.");
     } finally {
       setLoading(false);
@@ -198,12 +207,9 @@ export default function Contact() {
           >
             {sent ? (
               <div className={styles.successCard}>
-                <Lottie
-                  lottieRef={lottieRef}
-                  path={SUCCESS_LOTTIE}
-                  loop={false}
-                  style={{ height: 120 }}
-                />
+                <div className={styles.successIcon}>
+                  <FiCheckCircle size={48} />
+                </div>
                 <h4 className={styles.successTitle}>Message Sent!</h4>
                 <p className={styles.successSubtitle}>
                   Thanks, {form.name}! I&apos;ll get back to you as soon as

@@ -55,6 +55,6 @@ export const experiences = [
 
 export const stats = [
   { label: "Years Experience", value: 3, suffix: "+" },
-  { label: "Projects Completed", value: 20, suffix: "+" },
-  { label: "GitHub Repos", value: 40, suffix: "+" },
+  { label: "Projects Completed", value: 10, suffix: "+" },
+  { label: "GitHub Repos", value: 7, suffix: "+" },
 ];

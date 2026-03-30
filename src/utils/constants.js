@@ -34,7 +34,7 @@ export const SITE_CONFIG = {
     "Full-stack engineer specialising in MERN & MEAN. I turn ideas into production-ready web applications.",
   resumeUrl: "/resume.pdf",
   yearsExp: "3+",
-  projectsCount: "20+",
+  projectsCount: "10+",
   clientsCount: "15+",
 };
 

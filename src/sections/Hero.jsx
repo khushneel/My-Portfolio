@@ -1,56 +1,29 @@
-import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import { FiGithub, FiLinkedin } from "react-icons/fi";
-import { gsap } from "gsap";
 import Button from "@/components/ui/Button";
 import { SITE_CONFIG } from "@/utils/constants";
 import styles from "./Hero.module.css";
 
 const staggerContainer = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.12, delayChildren: 0.3 } },
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
 };
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 30 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] },
   },
 };
 
 export default function Hero() {
-  const heroRef = useRef(null);
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.to(".hero-orb-1", {
-        x: 30,
-        y: -20,
-        duration: 6,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-      });
-      gsap.to(".hero-orb-2", {
-        x: -25,
-        y: 30,
-        duration: 8,
-        ease: "sine.inOut",
-        yoyo: true,
-        repeat: -1,
-        delay: 1,
-      });
-    }, heroRef);
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section id="home" ref={heroRef} className={`${styles.hero} grid-bg`}>
+    <section id="home" className={`${styles.hero} grid-bg`}>
       {/* Background Orbs */}
       <div
-        className="orb orb-purple hero-orb-1"
+        className="orb orb-purple"
         style={{
           width: 600,
           height: 600,
@@ -60,7 +33,7 @@ export default function Hero() {
         }}
       />
       <div
-        className="orb orb-cyan hero-orb-2"
+        className="orb orb-cyan"
         style={{
           width: 500,
           height: 500,

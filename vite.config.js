@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import Sitemap from "vite-plugin-sitemap";
+import { VitePWA } from "vite-plugin-pwa";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -42,6 +43,55 @@ export default defineConfig({
       },
     }),
     Sitemap({ hostname: "https://khushneel.in", dynamicRoutes: ["/"] }),
+    VitePWA({
+      registerType: "autoUpdate",
+      includeAssets: [
+        "favicon.svg",
+        "apple-touch-icon.png",
+        "icon-192x192.png",
+        "icons/*.png",
+        "robots.txt",
+      ],
+      // Use the existing public/manifest.json instead of generating one
+      manifest: false,
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,webp,woff,woff2}"],
+        cleanupOutdatedCaches: true,
+        skipWaiting: true,
+        clientsClaim: true,
+        runtimeCaching: [
+          {
+            // Cache Google Fonts
+            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "google-fonts-cache",
+              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 },
+              cacheableResponse: { statuses: [0, 200] },
+            },
+          },
+          {
+            // Cache images at runtime
+            urlPattern: /\.(?:png|jpg|jpeg|svg|gif|webp|avif)$/i,
+            handler: "StaleWhileRevalidate",
+            options: {
+              cacheName: "images-cache",
+              expiration: { maxEntries: 60, maxAgeSeconds: 60 * 60 * 24 * 30 },
+            },
+          },
+          {
+            // Network-first for API / EmailJS calls
+            urlPattern: /^https:\/\/api\.emailjs\.com\/.*/i,
+            handler: "NetworkFirst",
+            options: { cacheName: "api-cache" },
+          },
+        ],
+      },
+      devOptions: {
+        enabled: true,
+        type: "module",
+      },
+    }),
   ],
   resolve: {
     alias: {

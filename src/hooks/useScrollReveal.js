@@ -41,8 +41,11 @@ export function useScrollReveal(options = {}) {
       },
     );
 
+    const triggers = ScrollTrigger.getAll().filter(
+      (t) => t.vars?.trigger === el || t.vars?.trigger === el.children?.[0],
+    );
     return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
+      triggers.forEach((t) => t.kill());
     };
   }, []);
 
